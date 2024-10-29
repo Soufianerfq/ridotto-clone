@@ -1,0 +1,7 @@
+img {
+    width: 600px;
+}
+
+#theGame {
+    background-image: url('../../../../src/images/slots/background.png');
+}

@@ -2,9 +2,9 @@
 import "./styles.css"
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
-import pic1 from "/src/images/tails.png"
-import pic2 from "/src/images/heads.png"
-import pic3 from "/src/images/coinflip.png"
+import pic1 from "/src/images/coinFlip/tails.png"
+import pic2 from "/src/images/coinFlip/heads.png"
+import pic3 from "/src/images/coinFlip/coinflip.png"
 
 
 export default function coinFlip() {
