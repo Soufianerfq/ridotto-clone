@@ -14,6 +14,7 @@ export default function coinFlip() {
         betNumber: 1,
         wager: null,
     }) //takes in user inputs
+
     useEffect(() => {
         const cardComponent = document.querySelector('.card__content');
         if (face == 'heads') {
@@ -87,27 +88,27 @@ export default function coinFlip() {
 
 
     return (
-        <div id="game-comtainer" className="flex flex-col h-[100%] w-full" >
-            <div id="theGame" className="flex lg:flex-row max-[650px]:flex-col h-[60%]">
+        <div id="game-comtainer" className="flex flex-col w-full" >
+            <div id="theGame" className="flex max-lg:flex-col p-3 gap-3 ">
 
-                <div id="game" className=" relative m-3 rounded-lg flex-1  max-[650px]:w-[100%]  border-[1px] border-gray-700 " >
-                    <div className="card h-[100%] max-[650px]:w-[100%]">
-                        <div className="card__content relative h-[85%]">
+                <div id="game" className=" relative  rounded-lg flex-1  max-md:w-[100%]  border-[1px] border-gray-700 w-full " >
+                    <div className="card sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto ">
+                        <div className="card__content h-full">
+
                             <div className="tails absolute top-0 bottom-0 right-0 left-0 p-8 flex items-center justify-center">
                                 <Image src={pic1} width={500} height={500} />
-
                             </div>
                             <div className="heads absolute top-0 bottom-0 right-0 left-0 p-8  flex items-center justify-center">
                                 <Image src={pic2} width={500} height={500} />
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-0 w-full ">
+                    <div className=" ">
                         <h3 className=" text-center text-white font-semibold bg-[#2c2634] rounded-lg m-3 p-1" id="announcement"> TRY YOUR LUCK</h3>
                     </div>
                 </div>
 
-                <div id="userInput" className="flex flex-col justify-around m-3 rounded-lg flex-none w-[20%] max-[650px]:w-[100%]  border-[1px] border-gray-700 p-5">
+                <div id="userInput" className="flex flex-col justify-around  rounded-lg flex-none lg:w-[360px]  border-[1px] border-gray-700 p-5">
                     <div> <Image className="max-[650px]:hidden" src={pic3} width={500} height={500} /></div>
                     <div id="wager ">
                         <h3 id="wager" className=" text-white font-bold">Bet Amount</h3>
@@ -116,7 +117,7 @@ export default function coinFlip() {
                         />
                     </div>
                     <div id="betNumber">
-                        <h3 id="betNumber" className=" text-white font-bold">Multiple Bets</h3>
+                        <h3 id="betNumber" className=" text-white font-bold">Multiple Bets: <span>{userInput.betNumber}</span></h3>
                         <input className="w-full accent-[#6600ff]" type="range" id="volume" name="volume" defaultValue='1' min="1" max="100"
                             onChange={(e) => setInput(({ ...userInput, betNumber: e.target.value }))}
                         />
@@ -155,8 +156,6 @@ export default function coinFlip() {
                     </div>
                 </div>
             </div>
-            {/* <div className="border-solid border-[grey] m-3 " id="leaderBoard max-[650px]: h-fit" >LEADER BOARD</div> */}
-
         </div>
     )
 }

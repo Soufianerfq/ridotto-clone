@@ -7,6 +7,8 @@ body {
 }
 
 /* --------------------------------------------------  */
+/* Radio buttons Styles */
+
 input[type="radio"] {
     display: none;
 }
@@ -51,7 +53,12 @@ label #img {
     z-index: -1;
 }
 
-/* ----------------------------------------------------- */
+/* ---------------------------------------------------- */
+
+
+/* ---------------------------------------------------- */
+/* coinFlip animation */
+
 h2 {
     font-size: 2rem
 }
@@ -60,7 +67,6 @@ h2 {
 .card__content {
     transform-style: preserve-3d;
     animation-duration: 4s;
-    padding: 80px;
 }
 
 
@@ -103,16 +109,14 @@ h2 {
 
 @keyframes static {}
 
+;
+/* ------------------------------------------------------- */
 
 
 
 
-
-
-
-
-
-
+/* ------------------------------------------- */
+/* Numbers input styling */
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
