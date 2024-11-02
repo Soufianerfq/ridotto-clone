@@ -1,7 +1,25 @@
-img {
-    width: 600px;
-}
-
 #theGame {
     background-image: url('../../../../src/images/slots/background.png');
+}
+
+
+#box1 div {
+    --ch: -1;
+    animation: scroll 1s 1s linear forwards;
+}
+
+#box2 div {
+    --ch: -4;
+    animation: scroll 1s 1.25s linear forwards;
+}
+
+#box3 div {
+    --ch: -8;
+    animation: scroll 1s 1.5s linear forwards;
+}
+
+@keyframes scroll {
+    to {
+        transform: translateY(calc(var(--ch)*100%));
+    }
 }
