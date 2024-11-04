@@ -2,24 +2,29 @@
     background-image: url('../../../../src/images/slots/background.png');
 }
 
+:root {
+    --slot: -9;
+}
+
 
 #box1 div {
-    --ch: -1;
-    animation: scroll 1s 1s linear forwards;
+    animation: scroll 2s 1s forwards;
 }
 
 #box2 div {
-    --ch: -4;
-    animation: scroll 1s 1.25s linear forwards;
+    animation: scroll 2s 1.5s forwards;
 }
 
-#box3 div {
-    --ch: -8;
-    animation: scroll 1s 1.5s linear forwards;
+.slot30 {
+    animation: scroll 2s 2s forwards;
+
 }
+
+
 
 @keyframes scroll {
+
     to {
-        transform: translateY(calc(var(--ch)*100%));
+        transform: translateY(calc(var(--slot)*100%));
     }
 }

@@ -75,7 +75,7 @@ export default function coinFlip() {
             }
             if (wins != 0) {
                 console.log(`congrats, you won ${wins}`);
-                announcement.innerHTML = `congrats, you won ${wins}`;
+                announcement.innerHTML = `congrats, you won $${wins}`;
 
             } else {
                 console.log('better luck next time');
