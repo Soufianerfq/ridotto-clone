@@ -15,6 +15,10 @@ import frame from "/src/images/slots/frame.png"
 import { useRef, useState } from "react"
 
 export default function slots() {
+    // const slots1 = document.querySelectorAll("#box1 > div");
+    // const slots2 = document.querySelectorAll("#box2 > div");
+    // const slots3 = document.querySelectorAll("#box3 > div");
+
     const [userInput, setInput] = useState({
         wager: null,
         betNumber: 1
@@ -26,6 +30,7 @@ export default function slots() {
         })
     }
 
+    // Animation reset function
     const reset = function () {
         const slots1 = document.querySelectorAll("#box1 > div");
         const slots2 = document.querySelectorAll("#box2 > div");
@@ -44,12 +49,65 @@ export default function slots() {
 
     };
 
+    // odds generator function
+    const odds = function () {
+        const randomNum = Math.floor(Math.random() * 100)
+        let multiplier = 0;
+        if (randomNum <= 2) {
+            // console.log(`x100 ${randomNum}`)
+            return multiplier = 100
+        } else if (randomNum >= 6 && randomNum <= 12) {
+            // console.log(`x45 ${randomNum}`)
+            return multiplier = 45
+        } else if (randomNum >= 16 && randomNum <= 28) {
+            // console.log(`x20 ${randomNum}`)
+            return multiplier = 20
+        } else if (randomNum >= 31 && randomNum <= 45) {
+            // console.log(`x10 ${randomNum}`)
+            return multiplier = 10
+        } else if (randomNum >= 51 && randomNum <= 75) {
+            // console.log(`x2 ${randomNum}`)
+            return multiplier = 2
+        } else {
+            // console.log('you lost')
+            return multiplier = 0
+        }
+    }
+
+    // Results diplay function
+    const result = async function (a, b, c, x) {
+        const slots1 = document.querySelectorAll("#box1 > div");
+        const slots2 = document.querySelectorAll("#box2 > div");
+        const slots3 = document.querySelectorAll("#box3 > div");
+        for (let i = 0; i < slots1.length; i++) {
+            slots1[i].style.setProperty("--slot", a)
+            slots1[i].style.animation = "scroll 2s 1s forwards "
+        }
+
+        await sleep(500)
+        for (let i = 0; i < slots2.length; i++) {
+            slots2[i].style.setProperty("--slot", b)
+            slots2[i].style.animation = "scroll 2s 1.5s forwards "
+        }
+
+        await sleep(500)
+        for (let i = 0; i < slots3.length; i++) {
+            slots3[i].style.setProperty("--slot", c)
+            slots3[i].style.animation = "scroll 2s 2s forwards "
+        }
+    }
+
+
+    // the game
     const slotSpin = async function (betN, wagerAm) {
         const slots1 = document.querySelectorAll("#box1 > div");
         const slots2 = document.querySelectorAll("#box2 > div");
         const slots3 = document.querySelectorAll("#box3 > div");
         let wins = 0;
+
         for (let x = 0; x < betN; x++) {
+            let multiplier = odds();
+            console.log(multiplier)
             reset()
             for (let i = 0; i < slots3.length; i++) {
                 slots1[i].style.animation = "scroll 1s linear forwards infinite"
@@ -58,44 +116,38 @@ export default function slots() {
             }
 
             await sleep(5000)
+            if (multiplier == 100) {
+                result("-9", "-9", "-9", x)
+                wins = wins + (wagerAm * multiplier)
 
-            for (let i = 0; i < slots1.length; i++) {
-                slots1[i].style.setProperty("--slot", "-1")
-                slots1[i].style.animation = "scroll 2s 1s forwards "
-            }
+            } else if (multiplier == 45) {
+                result("-1", "-1", "-6", x)
+                wins = wins + (wagerAm * multiplier)
 
-            await sleep(500)
-            for (let i = 0; i < slots2.length; i++) {
-                slots2[i].style.setProperty("--slot", "-8")
-                slots2[i].style.animation = "scroll 2s 1.5s forwards "
-            }
+            } else if (multiplier == 20) {
+                result("-3", "-3", "-7", x)
+                wins = wins + (wagerAm * multiplier)
 
-            await sleep(500)
-            for (let i = 0; i < slots3.length; i++) {
-                slots3[i].style.setProperty("--slot", "-3")
-                slots3[i].style.animation = "scroll 2s 2s forwards "
+            } else if (multiplier == 10) {
+                result("-4", "-3", "-8", x)
+                wins = wins + (wagerAm * multiplier)
+
+            } else if (multiplier == 2) {
+                result("-5", "-6", "-4", x)
+                wins = wins + (wagerAm * multiplier)
+
+            } else if (multiplier == 0) {
+                result("-7", "-5", "-9", x)
+                wins = wins + (wagerAm * multiplier)
             }
-            await sleep(1000)
+            await sleep(2000)
             if (x == betN) {
                 !reset()
             }
         }
+        console.log(`you won $${wins}`)
     };
 
-    const odds = function (n) {
-        const randomNum = Math.floor(Math.random() * 100)
-        if (randomNum <= 2) {
-            console.log(`x100 ${randomNum}`)
-        } else if (randomNum >= 6 && randomNum <= 12) {
-            console.log(`x45 ${randomNum}`)
-        } else if (randomNum >= 16 && randomNum <= 28) {
-            console.log(`x20 ${randomNum}`)
-        } else if (randomNum >= 31 && randomNum <= 45) {
-            console.log(`x10 ${randomNum}`)
-        } else if (randomNum >= 51 && randomNum <= 75) {
-            console.log(`x2 ${randomNum}`)
-        } else (console.log(`you lost ${randomNum}`))
-    }
 
     return (
         // Game animation and display section
@@ -229,7 +281,7 @@ export default function slots() {
                     </div>
                 </div>
                 <div id="flip">
-                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => odds()} >Flip Your Money Goodbye</button>
+                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => slotSpin(userInput.betNumber, userInput.wager)} >Flip Your Money Goodbye</button>
                 </div>
             </div>
         </div>
