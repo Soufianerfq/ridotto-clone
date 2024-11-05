@@ -7,7 +7,7 @@ import pic2 from "/src/images/coinFlip/heads.png"
 import pic3 from "/src/images/coinFlip/coinflip.png"
 
 
-export default function coinFlip() {
+export default function CoinFlip() {
     const [face, setFace] = useState('heads') //handled which face is being displayed
     const [userInput, setInput] = useState({
         face: null,

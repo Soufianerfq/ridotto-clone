@@ -14,7 +14,7 @@ import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
 import { useState } from "react"
 
-export default function slots() {
+export default function Slots() {
     // const slots1 = document.querySelectorAll("#box1 > div");
     // const slots2 = document.querySelectorAll("#box2 > div");
     // const slots3 = document.querySelectorAll("#box3 > div");
