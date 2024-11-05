@@ -12,7 +12,7 @@ import slot7 from "/src/images/slots/7.png"
 import slot8 from "/src/images/slots/8.png"
 import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 export default function slots() {
     // const slots1 = document.querySelectorAll("#box1 > div");
