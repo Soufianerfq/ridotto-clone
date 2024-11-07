@@ -12,23 +12,15 @@ import slot7 from "/src/images/slots/7.png"
 import slot8 from "/src/images/slots/8.png"
 import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
-import { useState } from "react"
+import { useAppContext } from "@/app/(context)/context";
 
 export default function Slots() {
     // const slots1 = document.querySelectorAll("#box1 > div");
     // const slots2 = document.querySelectorAll("#box2 > div");
     // const slots3 = document.querySelectorAll("#box3 > div");
 
-    const [userInput, setInput] = useState({
-        wager: null,
-        betNumber: 1
-    })
+    const { userInput, setInput, gameOutput, setOutput, RNG, sleep } = useAppContext()
 
-    function sleep(time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, time)
-        })
-    }
 
     // Animation reset function
     const reset = function () {
@@ -51,25 +43,25 @@ export default function Slots() {
 
     // odds generator function
     const odds = function () {
-        const randomNum = Math.floor(Math.random() * 100)
+        const randomNum = RNG(100, 0)
         let multiplier = 0;
         if (randomNum <= 2) {
-            // console.log(`x100 ${randomNum}`)
+            console.log(`x100 ${randomNum}`)
             return multiplier = 100
         } else if (randomNum >= 6 && randomNum <= 12) {
-            // console.log(`x45 ${randomNum}`)
+            console.log(`x45 ${randomNum}`)
             return multiplier = 45
         } else if (randomNum >= 16 && randomNum <= 28) {
-            // console.log(`x20 ${randomNum}`)
+            console.log(`x20 ${randomNum}`)
             return multiplier = 20
         } else if (randomNum >= 31 && randomNum <= 45) {
-            // console.log(`x10 ${randomNum}`)
+            console.log(`x10 ${randomNum}`)
             return multiplier = 10
         } else if (randomNum >= 51 && randomNum <= 75) {
-            // console.log(`x2 ${randomNum}`)
+            console.log(`x2 ${randomNum}`)
             return multiplier = 2
         } else {
-            // console.log('you lost')
+            console.log('you lost')
             return multiplier = 0
         }
     }
@@ -97,13 +89,12 @@ export default function Slots() {
         }
     }
 
-
     // the game
     const slotSpin = async function (betN, wagerAm) {
         const slots1 = document.querySelectorAll("#box1 > div");
         const slots2 = document.querySelectorAll("#box2 > div");
         const slots3 = document.querySelectorAll("#box3 > div");
-        let wins = 0;
+        let winns = 0;
 
         for (let x = 0; x < betN; x++) {
             let multiplier = odds();
@@ -118,34 +109,42 @@ export default function Slots() {
             await sleep(5000)
             if (multiplier == 100) {
                 result("-9", "-9", "-9", x)
-                wins = wins + (wagerAm * multiplier)
-
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             } else if (multiplier == 45) {
                 result("-1", "-1", "-6", x)
-                wins = wins + (wagerAm * multiplier)
-
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             } else if (multiplier == 20) {
                 result("-3", "-3", "-7", x)
-                wins = wins + (wagerAm * multiplier)
-
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             } else if (multiplier == 10) {
                 result("-4", "-3", "-8", x)
-                wins = wins + (wagerAm * multiplier)
-
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             } else if (multiplier == 2) {
                 result("-5", "-6", "-4", x)
-                wins = wins + (wagerAm * multiplier)
-
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             } else if (multiplier == 0) {
                 result("-7", "-5", "-9", x)
-                wins = wins + (wagerAm * multiplier)
+                winns = winns + (wagerAm * multiplier)
+                setOutput(({ ...gameOutput, wins: winns }))
             }
             await sleep(2000)
             if (x == betN) {
                 !reset()
             }
         }
-        console.log(`you won $${wins}`)
+        if (winns != 0) {
+            console.log(`congrats, you won ${gameOutput.winns}`);
+            announcement.innerHTML = `congrats, you won $${gameOutput.wins}`;
+
+        } else {
+            console.log('better luck next time');
+            announcement.innerHTML = `you lost, better luck next time`;
+        }
     };
 
 

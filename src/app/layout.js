@@ -1,9 +1,6 @@
-"use client"
 import "./styles.css";
-import React, { useState } from 'react'
 
 export default function RootLayout({ children }) {
-  const [isexpanded, setExpand] = useState(true)
 
   return (
     <html lang="en">

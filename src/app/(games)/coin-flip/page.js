@@ -1,23 +1,19 @@
 "use client";
 import "./styles.css"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
+import { useEffect } from "react"
 import pic1 from "/src/images/coinFlip/tails.png"
 import pic2 from "/src/images/coinFlip/heads.png"
 import pic3 from "/src/images/coinFlip/coinflip.png"
+import { useAppContext } from "@/app/(context)/context";
 
 
 export default function CoinFlip() {
-    const [face, setFace] = useState('heads') //handled which face is being displayed
-    const [userInput, setInput] = useState({
-        face: null,
-        betNumber: 1,
-        wager: null,
-    }) //takes in user inputs
+    const { userInput, setInput, gameOutput, setOutput, RNG, sleep } = useAppContext()
 
     useEffect(() => {
         const cardComponent = document.querySelector('.card__content');
-        if (face == 'heads') {
+        if (userInput.side == 'heads') {
             const cardComponent = document.querySelector('.card__content');
             cardComponent.style.transform = "rotateX(1turn)";
             cardComponent.style.transitionDuration = "1s"
@@ -28,17 +24,9 @@ export default function CoinFlip() {
             cardComponent.style.transitionDuration = "1s"
 
         }
-    }, [face])
+    }, [userInput.side])
     //useEffect is used to manage animation for when user switches between heads and tails
 
-
-
-
-    function sleep(time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, time)
-        })
-    }
 
     const flipCoin = async function (n, y) {
         const announcement = document.querySelector('#announcement')
@@ -133,8 +121,7 @@ export default function CoinFlip() {
                                 id="heads"
                                 value="heads"
                                 onChange={(e) => {
-                                    setFace('heads')
-                                    setInput(({ ...userInput, face: e.target.value }))
+                                    setInput(({ ...userInput, face: e.target.value, side: e.target.value }))
                                 }} />
                             <label for="heads" className="max-[650px]:w-[30%]"><Image id='img' src={pic2} /></label>
                             <input
@@ -144,8 +131,7 @@ export default function CoinFlip() {
                                 id="tails"
                                 value="tails"
                                 onChange={(e) => {
-                                    setFace('tails')
-                                    setInput(({ ...userInput, face: e.target.value }))
+                                    setInput(({ ...userInput, face: e.target.value, side: e.target.value }))
                                     console.log(userInput)
                                 }} />
                             <label for="tails" className="max-[650px]:w-[30%]"><Image id='img' src={pic1} /></label>
