@@ -18,13 +18,12 @@ export function AppWrapper({ children }) {
     }
     )
 
-
     const RNG = function (a, b) {
-        const randomNum = Math.floor(Math.random() * a) + b //CF
+        const randomNum = Math.floor(Math.random() * a) + b
         return randomNum
     }
 
-    function sleep(time) {
+    const sleep = function (time) {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, time)
         })
@@ -37,7 +36,7 @@ export function AppWrapper({ children }) {
             gameOutput,
             setOutput,
             RNG,
-            sleep
+            sleep,
         }} >
             {children}
         </AppContext.Provider>
