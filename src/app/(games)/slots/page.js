@@ -15,7 +15,7 @@ import frame from "/src/images/slots/frame.png"
 import { useSlots } from "@/app/(context)/slots"
 
 export default function Slots() {
-    const { userInput, setInput, slotSpin } = useSlots()
+    const { userInput, setInput, SlotSpin } = useSlots()
 
 
     return (
@@ -126,7 +126,7 @@ export default function Slots() {
                     </div>
                 </div>
                 <div id="flip">
-                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => slotSpin(userInput.betNumber, userInput.wager)} >Flip Your Money Goodbye</button>
+                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager)} >Flip Your Money Goodbye</button>
                 </div>
             </div>
         </div>

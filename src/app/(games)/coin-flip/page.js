@@ -11,7 +11,7 @@ import { useGamesProvider } from "@/app/(context)/gamesProvider";
 
 
 export default function CoinFlip() {
-    const { flipCoin } = useCoinFlip()
+    const { FlipCoin } = useCoinFlip()
     const { userInput, setInput } = useGamesProvider()
 
     useEffect(() => {
@@ -94,7 +94,7 @@ export default function CoinFlip() {
                         </div>
                     </div>
                     <div id="flip">
-                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => flipCoin(userInput.betNumber, userInput.wager)}>Flip Your Money Goodbye</button>
+                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(userInput.betNumber, userInput.wager)}>Flip Your Money Goodbye</button>
                     </div>
                 </div>
             </div>

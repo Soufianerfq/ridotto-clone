@@ -70,7 +70,7 @@ export function Slots({ children }) {
 
     };
 
-    const slotSpin = async function (betN, wager) {
+    const SlotSpin = async function (betN, wager) {
 
         for (let x = 0; x < betN; x++) {
             let multiplier = odds();
@@ -122,7 +122,7 @@ export function Slots({ children }) {
         <AppContext.Provider value={{
             userInput,
             setInput,
-            slotSpin
+            SlotSpin
         }} >
             {children}
         </AppContext.Provider>
