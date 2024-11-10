@@ -18,24 +18,22 @@ export function GamesProvider({ children }) {
         multiplier: []
     });
 
-    const useRNG = function (a, b) {
-        const randomNum = Math.floor(Math.random() * a) + b
-        return randomNum
-    }
+    // const useRNG = function (a, b) {
+    //     const randomNum = Math.floor(Math.random() * a) + b
+    //     return randomNum
+    // }
 
-    const useSleep = function (time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, time)
-        })
-    }
+    // const useSleep = function (time) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(resolve, time)
+    //     })
+    // }
 
 
     return (
         <gamesContext.Provider value={{
             userInput,
             setInput,
-            useRNG,
-            useSleep,
             results,
             setResults
         }} >

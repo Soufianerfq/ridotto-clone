@@ -5,13 +5,24 @@ import { useGamesProvider } from "./gamesProvider";
 const AppContext = createContext()
 
 export function Slots({ children }) {
-    const { useRNG, useSleep, userInput, setInput } = useGamesProvider()
+    const { userInput, setInput } = useGamesProvider()
 
     const slots1 = document.querySelectorAll("#box1 > div");
     const slots2 = document.querySelectorAll("#box2 > div");
     const slots3 = document.querySelectorAll("#box3 > div");
 
     let wins = 0;
+
+    const useRNG = function (a, b) {
+        const randomNum = Math.floor(Math.random() * a) + b
+        return randomNum
+    }
+
+    const useSleep = function (time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, time)
+        })
+    }
 
     const Result = async function (a, b, c) {
         for (let i = 0; i < slots1.length; i++) {
@@ -73,7 +84,7 @@ export function Slots({ children }) {
     const SlotSpin = async function (betN, wager) {
 
         for (let x = 0; x < betN; x++) {
-            let multiplier = odds();
+            let multiplier = Odds();
             console.log(multiplier)
             Reset(slots1, slots2, slots3)
             for (let i = 0; i < slots3.length; i++) {

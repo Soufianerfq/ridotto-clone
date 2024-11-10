@@ -5,11 +5,22 @@ import { useGamesProvider } from "./gamesProvider"
 const coinFlipContext = createContext()
 
 export function CoinFLip({ children }) {
-    const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
+    const { userInput, setInput, results } = useGamesProvider()
 
     const cardComponent = document.querySelector('.card__content');
     const announcement = document.querySelector('#announcement')
     let wins = 0
+
+    const useRNG = function (a, b) {
+        const randomNum = Math.floor(Math.random() * a) + b
+        return randomNum
+    }
+
+    const useSleep = function (time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, time)
+        })
+    }
 
     //Coin flip Mechanism and animation control
     const CF = useCallback(async function (betN, wager) {
