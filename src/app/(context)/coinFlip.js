@@ -5,7 +5,7 @@ import { useGamesProvider } from "./gamesProvider"
 const coinFlipContext = createContext()
 
 export function CoinFLip({ children }) {
-    const { userInput, setInput, results } = useGamesProvider()
+    const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
 
     const cardComponent = document.querySelector('.card__content');
     const announcement = document.querySelector('#announcement')
@@ -70,7 +70,7 @@ export function CoinFLip({ children }) {
         }
     }, [userInput])
 
-    const FlipCoin = function (betN, wager) {
+    const flipCoin = function (betN, wager) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
@@ -78,11 +78,15 @@ export function CoinFLip({ children }) {
         }
     }
 
+    const Count = function () {
+        setResults(({ ...results, total: 5 }))
+    }
+
     return (
         <coinFlipContext.Provider value={{
             userInput,
             setInput,
-            FlipCoin
+            flipCoin
         }} >
             {children}
         </coinFlipContext.Provider>
