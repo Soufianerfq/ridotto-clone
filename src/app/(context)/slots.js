@@ -5,7 +5,7 @@ import { useGamesProvider } from "./gamesProvider";
 const AppContext = createContext()
 
 export function Slots({ children }) {
-    const { userInput, setInput } = useGamesProvider()
+    const { userInput, setInput, useSleep, useRNG } = useGamesProvider()
 
     const slots1 = document.querySelectorAll("#box1 > div");
     const slots2 = document.querySelectorAll("#box2 > div");
@@ -13,16 +13,6 @@ export function Slots({ children }) {
 
     let wins = 0;
 
-    const RNG = function (a, b) {
-        const randomNum = Math.floor(Math.random() * a) + b
-        return randomNum
-    }
-
-    const Sleep = function (time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, time)
-        })
-    }
 
     const result = async function (a, b, c) {
         for (let i = 0; i < slots1.length; i++) {
@@ -30,13 +20,13 @@ export function Slots({ children }) {
             slots1[i].style.animation = "scroll 2s 1s forwards "
         }
 
-        await Sleep(500)
+        await useSleep(500)
         for (let i = 0; i < slots2.length; i++) {
             slots2[i].style.setProperty("--slot", b)
             slots2[i].style.animation = "scroll 2s 1.5s forwards "
         }
 
-        await Sleep(500)
+        await useSleep(500)
         for (let i = 0; i < slots3.length; i++) {
             slots3[i].style.setProperty("--slot", c)
             slots3[i].style.animation = "scroll 2s 2s forwards "
@@ -93,7 +83,7 @@ export function Slots({ children }) {
                 slots3[i].style.animation = "scroll 1.5s linear forwards infinite"
             }
 
-            await Sleep(5000)
+            await useSleep(5000)
             if (multiplier == 100) {
                 result("-9", "-9", "-9")
                 wins = wins + (wager * multiplier)
@@ -113,7 +103,7 @@ export function Slots({ children }) {
                 result("-7", "-5", "-9")
                 wins = wins + (wager * multiplier)
             }
-            await Sleep(2000)
+            await useSleep(2000)
             if (x == betN) {
                 !reset()
             }

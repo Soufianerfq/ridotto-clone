@@ -18,16 +18,16 @@ export function GamesProvider({ children }) {
         multiplier: []
     });
 
-    // const useRNG = function (a, b) {
-    //     const randomNum = Math.floor(Math.random() * a) + b
-    //     return randomNum
-    // }
+    const useRNG = function (a, b) {
+        const randomNum = Math.floor(Math.random() * a) + b
+        return randomNum
+    }
 
-    // const useSleep = function (time) {
-    //     return new Promise((resolve, reject) => {
-    //         setTimeout(resolve, time)
-    //     })
-    // }
+    const useSleep = function (time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, time)
+        })
+    }
 
 
     return (
@@ -35,7 +35,9 @@ export function GamesProvider({ children }) {
             userInput,
             setInput,
             results,
-            setResults
+            setResults,
+            useRNG,
+            useSleep
         }} >
             {children}
         </gamesContext.Provider>
