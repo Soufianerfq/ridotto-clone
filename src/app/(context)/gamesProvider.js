@@ -1,9 +1,9 @@
 "use client"
 import { createContext, useState, useContext } from "react"
 
-const AppContext = createContext()
+const gamesContext = createContext()
 
-export function AppWrapper({ children }) {
+export function GamesProvider({ children }) {
 
     const [userInput, setInput] = useState({
         face: null,
@@ -12,37 +12,35 @@ export function AppWrapper({ children }) {
         side: "heads"
     });
 
-    const [gameOutput, setOutput] = useState({
-        multipliers: [],
-        wins: 0
-    }
-    )
+    const [results, setResults] = useState({
+        wins: 0,
+        multiplier: []
+    });
 
-    const RNG = function (a, b) {
+    const useRNG = function (a, b) {
         const randomNum = Math.floor(Math.random() * a) + b
         return randomNum
     }
 
-    const sleep = function (time) {
+    const useSleep = function (time) {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, time)
         })
     }
 
+
     return (
-        <AppContext.Provider value={{
+        <gamesContext.Provider value={{
             userInput,
             setInput,
-            gameOutput,
-            setOutput,
-            RNG,
-            sleep,
+            useRNG,
+            useSleep
         }} >
             {children}
-        </AppContext.Provider>
+        </gamesContext.Provider>
     )
 }
 
-export function useAppContext() {
-    return useContext(AppContext)
+export function useGamesProvider() {
+    return useContext(gamesContext)
 }

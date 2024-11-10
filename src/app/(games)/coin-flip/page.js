@@ -5,81 +5,27 @@ import { useEffect } from "react"
 import pic1 from "/src/images/coinFlip/tails.png"
 import pic2 from "/src/images/coinFlip/heads.png"
 import pic3 from "/src/images/coinFlip/coinflip.png"
-import { useAppContext } from "@/app/(context)/context";
+import { useCoinFlip } from "@/app/(context)/coinFlip";
+import { useGamesProvider } from "@/app/(context)/gamesProvider";
+
 
 
 export default function CoinFlip() {
-    const { userInput, setInput, gameOutput, setOutput, RNG, sleep } = useAppContext()
-    let wins = 0
+    const { flipCoin } = useCoinFlip()
+    const { userInput, setInput } = useGamesProvider()
 
     useEffect(() => {
         const cardComponent = document.querySelector('.card__content');
         if (userInput.side == 'heads') {
-            const cardComponent = document.querySelector('.card__content');
             cardComponent.style.transform = "rotateX(1turn)";
             cardComponent.style.transitionDuration = "1s"
 
         } else {
-            const cardComponent = document.querySelector('.card__content');
             cardComponent.style.transform = "rotateX(.5turn)";
             cardComponent.style.transitionDuration = "1s"
 
         }
     }, [userInput.side])
-    //useEffect is used to manage animation for when user switches between heads and tails
-
-
-
-    const flipCoin = function (betN, wager) {
-        const announcement = document.querySelector('#announcement')
-        let wins = 0;
-        if (userInput.face === null || userInput.wager === null) {
-            console.log("please select stuff")
-        } else {
-            odds(betN, wager)
-        }
-    }
-
-
-
-    const odds = async function (betN, wager) {
-        for (let i = 1; i <= betN; i++) {
-            const randomNum = RNG(2, 1); //the ods for the game 50/50 odds
-            const cardComponent = document.querySelector('.card__content');
-            if (userInput.face === 'heads' && randomNum == 1) {
-                cardComponent.style.animationName = "heads"
-                console.log(`you won ${wager * 2}`)
-                wins = wins + (wager * 2)
-                setInput(({ ...userInput, side: "heads" }))
-            } else if (userInput.face === 'tails' && randomNum == 2) {
-                cardComponent.style.animationName = "tails"
-                console.log(`you won ${wager * 2}`)
-                wins = wins + (wager * 2)
-                setInput(({ ...userInput, side: "tail" }))
-            } else if (userInput.face === 'heads' && randomNum == 2) {
-                cardComponent.style.animationName = "tails"
-                console.log('you lost to tails')
-                setInput(({ ...userInput, side: "tails" }))
-            } else if (userInput.face === 'tails' && randomNum == 1) {
-                cardComponent.style.animationName = "heads"
-                console.log('you lost to heads')
-                setInput(({ ...userInput, side: "heads" }))
-            }
-            await sleep(4000)
-            cardComponent.style.animationName = "static" //resets the animation
-            // reset()
-            await sleep(50)
-        }
-        if (wins != 0) {
-            console.log(`congrats, you won ${wins}`);
-            announcement.innerHTML = `congrats, you won $${wins}`;
-
-        } else {
-            console.log('better luck next time');
-            announcement.innerHTML = `you lost, better luck next time`;
-        }
-    }
-
 
 
     return (
@@ -143,7 +89,6 @@ export default function CoinFlip() {
                                 value="tails"
                                 onChange={(e) => {
                                     setInput(({ ...userInput, face: e.target.value, side: e.target.value }))
-                                    console.log(userInput.side)
                                 }} />
                             <label for="tails" className="max-[650px]:w-[30%]"><Image id='img' src={pic1} /></label>
                         </div>

@@ -1,9 +1,16 @@
-import { AppWrapper } from "../(context)/context"
+import { CoinFLip } from "../(context)/coinFlip"
+import { Slots } from "../(context)/slots"
+import { GamesProvider } from "../(context)/gamesProvider"
+
 
 export default function Layout({ children }) {
     return <>
-        <AppWrapper>
-            {children}
-        </AppWrapper>
+        <GamesProvider>
+            <CoinFLip>
+                <Slots>
+                    {children}
+                </Slots>
+            </CoinFLip>
+        </GamesProvider>
     </>
 }
