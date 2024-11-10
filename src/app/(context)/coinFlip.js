@@ -36,7 +36,6 @@ export function CoinFLip({ children }) {
                 cardComponent.style.animationName = "tails"
                 console.log('you lost to tails')
                 setInput(({ ...userInput, side: "tails" }))
-                Count()
                 console.log(results)
             }
 

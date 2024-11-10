@@ -13,7 +13,7 @@ export function Slots({ children }) {
 
     let wins = 0;
 
-    const result = async function (a, b, c) {
+    const Result = async function (a, b, c) {
         for (let i = 0; i < slots1.length; i++) {
             slots1[i].style.setProperty("--slot", a)
             slots1[i].style.animation = "scroll 2s 1s forwards "
@@ -32,7 +32,7 @@ export function Slots({ children }) {
         }
     }
 
-    const odds = function () {
+    const Odds = function () {
         const randomNum = useRNG(100, 0)
         let multiplier = 0;
         if (randomNum <= 2) {
@@ -56,7 +56,7 @@ export function Slots({ children }) {
         }
     }
 
-    const reset = function () {
+    const Reset = function () {
         for (let i = 0; i < slots1.length; i++) {
             slots1[i].style.setProperty("--slot", "-9")
         }
@@ -75,7 +75,7 @@ export function Slots({ children }) {
         for (let x = 0; x < betN; x++) {
             let multiplier = odds();
             console.log(multiplier)
-            reset(slots1, slots2, slots3)
+            Reset(slots1, slots2, slots3)
             for (let i = 0; i < slots3.length; i++) {
                 slots1[i].style.animation = "scroll 1s linear forwards infinite"
                 slots2[i].style.animation = "scroll 1.25s linear forwards infinite"
@@ -84,27 +84,27 @@ export function Slots({ children }) {
 
             await useSleep(5000)
             if (multiplier == 100) {
-                result("-9", "-9", "-9")
+                Result("-9", "-9", "-9")
                 wins = wins + (wager * multiplier)
             } else if (multiplier == 45) {
-                result("-1", "-1", "-6")
+                Result("-1", "-1", "-6")
                 wins = wins + (wager * multiplier)
             } else if (multiplier == 20) {
-                result("-3", "-3", "-7")
+                Result("-3", "-3", "-7")
                 wins = wins + (wager * multiplier)
             } else if (multiplier == 10) {
-                result("-4", "-3", "-8")
+                Result("-4", "-3", "-8")
                 wins = wins + (wager * multiplier)
             } else if (multiplier == 2) {
-                result("-5", "-6", "-4")
+                Result("-5", "-6", "-4")
                 wins = wins + (wager * multiplier)
             } else if (multiplier == 0) {
-                result("-7", "-5", "-9")
+                Result("-7", "-5", "-9")
                 wins = wins + (wager * multiplier)
             }
             await useSleep(2000)
             if (x == betN) {
-                !reset()
+                !Reset()
             }
         }
         if (wins != 0) {
