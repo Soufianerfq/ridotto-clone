@@ -13,12 +13,12 @@ export function Slots({ children }) {
 
     let wins = 0;
 
-    const useRNG = function (a, b) {
+    const RNG = function (a, b) {
         const randomNum = Math.floor(Math.random() * a) + b
         return randomNum
     }
 
-    const useSleep = function (time) {
+    const Sleep = function (time) {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, time)
         })
@@ -30,13 +30,13 @@ export function Slots({ children }) {
             slots1[i].style.animation = "scroll 2s 1s forwards "
         }
 
-        await useSleep(500)
+        await Sleep(500)
         for (let i = 0; i < slots2.length; i++) {
             slots2[i].style.setProperty("--slot", b)
             slots2[i].style.animation = "scroll 2s 1.5s forwards "
         }
 
-        await useSleep(500)
+        await Sleep(500)
         for (let i = 0; i < slots3.length; i++) {
             slots3[i].style.setProperty("--slot", c)
             slots3[i].style.animation = "scroll 2s 2s forwards "
@@ -44,7 +44,7 @@ export function Slots({ children }) {
     }
 
     const Odds = function () {
-        const randomNum = useRNG(100, 0)
+        const randomNum = RNG(100, 0)
         let multiplier = 0;
         if (randomNum <= 2) {
             console.log(`x100 ${randomNum}`)
@@ -93,7 +93,7 @@ export function Slots({ children }) {
                 slots3[i].style.animation = "scroll 1.5s linear forwards infinite"
             }
 
-            await useSleep(5000)
+            await Sleep(5000)
             if (multiplier == 100) {
                 Result("-9", "-9", "-9")
                 wins = wins + (wager * multiplier)
@@ -113,7 +113,7 @@ export function Slots({ children }) {
                 Result("-7", "-5", "-9")
                 wins = wins + (wager * multiplier)
             }
-            await useSleep(2000)
+            await Sleep(2000)
             if (x == betN) {
                 !Reset()
             }
