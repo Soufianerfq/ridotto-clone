@@ -9,11 +9,12 @@ export function GamesProvider({ children }) {
         face: null,
         betNumber: 1,
         wager: null,
-        side: "heads"
+        side: "heads",
+        total: 0
     });
 
     const [results, setResults] = useState({
-        wins: 0,
+        total: 0,
         multiplier: []
     });
 
@@ -34,7 +35,9 @@ export function GamesProvider({ children }) {
             userInput,
             setInput,
             useRNG,
-            useSleep
+            useSleep,
+            results,
+            setResults
         }} >
             {children}
         </gamesContext.Provider>

@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, useContext } from "react"
+import { createContext, useCallback, useContext } from "react"
 import { useGamesProvider } from "./gamesProvider";
 
 const AppContext = createContext()
@@ -10,12 +10,8 @@ export function Slots({ children }) {
     const slots1 = document.querySelectorAll("#box1 > div");
     const slots2 = document.querySelectorAll("#box2 > div");
     const slots3 = document.querySelectorAll("#box3 > div");
-    let wins = 0;
 
-    const [results, setResults] = useState({
-        wins: 0,
-        multiplier: []
-    });
+    let wins = 0;
 
     const result = async function (a, b, c) {
         for (let i = 0; i < slots1.length; i++) {

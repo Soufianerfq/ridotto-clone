@@ -24,101 +24,77 @@ export default function Slots() {
             <div id="theGame" className="  rounded-lg flex-1 max-md:w-[100%] bg-cover border-[1px] border-gray-700 w-full">
                 <div id="slots" className=" flex items-start justify-center sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto">
                     <div className=" relative">
-                        <div id="slots" className="absolute top-[38%] left-[12%] h-[140px] w-[380px] bg-transparent grid grid-cols-3 divide-x-0">
-                            <div id="box1" className="overflow-hidden">
-                                <div className="w-[126px] h-[140px]">
+                        <div id="slots" className="absolute top-[38%] left-[12%] md:h-[140px] md:w-[380px] bg-transparent grid grid-cols-3 divide-x-0">
+                            <div id="box1" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot1} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot2} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot3} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot4} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot5} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot6} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot7} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot7} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot8} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot8} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot9} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot9} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot1} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                             </div>
-                            <div id="box2" className="overflow-hidden">
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot1} />
+                            <div id="box2" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot2} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot2} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot3} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot3} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot4} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot4} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot5} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot5} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot6} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot6} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot7} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot7} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot8} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot8} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot9} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot9} />
                                 </div>
-                                <div className="w-[126px] h-[140px]">
-                                    <Image className="w-full h-full" src={slot1} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                             </div>
-                            <div id="box3" className="overflow-hidden">
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot1} />
+                            <div id="box3" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot2} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot2} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot3} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot3} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot4} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot4} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot5} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot5} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot6} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot6} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot7} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot7} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot8} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot8} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot9} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot9} />
                                 </div>
-                                <div className="w-[126px] h-[140px] slot30 ">
-                                    <Image className="w-full h-full " src={slot1} />
+                                <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                             </div>
                         </div>
