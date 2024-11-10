@@ -11,12 +11,12 @@ export function CoinFLip({ children }) {
     const announcement = document.querySelector('#announcement')
     let wins = 0
 
-    const useRNG = function (a, b) {
+    const RNG = function (a, b) {
         const randomNum = Math.floor(Math.random() * a) + b
         return randomNum
     }
 
-    const useSleep = function (time) {
+    const Sleep = function (time) {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, time)
         })
@@ -25,7 +25,7 @@ export function CoinFLip({ children }) {
     //Coin flip Mechanism and animation control
     const CF = useCallback(async function (betN, wager) {
         for (let i = 1; i <= betN; i++) {
-            const randomNum = useRNG(2, 1); //the odds for the game 50/50 
+            const randomNum = RNG(2, 1); //the odds for the game 50/50 
             if (userInput.face === 'heads' && randomNum == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log(`you won ${wager * 2}`)
@@ -56,9 +56,9 @@ export function CoinFLip({ children }) {
                 setInput(({ ...userInput, side: "heads" }))
             }
 
-            await useSleep(4000)
+            await Sleep(4000)
             cardComponent.style.animationName = "static" //resets the animation
-            await useSleep(50)
+            await Sleep(50)
         }
         if (wins != 0) {
             console.log(`congrats, you won ${wins}`);
