@@ -73,7 +73,7 @@ export function CoinFLip({ children }) {
         } else {
             CF(betN, wager, cardComponent, announcement)
         }
-    }
+    }[CF])
 
     return (
         <coinFlipContext.Provider value={{
