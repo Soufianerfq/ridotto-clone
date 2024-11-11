@@ -67,7 +67,7 @@ export function CoinFLip({ children }) {
         }
     }
 
-    const FlipCoin = function (betN, wager, cardComponent, announcement) {
+    const FlipCoin = useCallback(function (betN, wager, cardComponent, announcement) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
