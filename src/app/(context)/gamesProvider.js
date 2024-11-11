@@ -4,6 +4,7 @@ import { createContext, useState, useContext } from "react"
 const gamesContext = createContext()
 
 export function GamesProvider({ children }) {
+
     const [userInput, setInput] = useState({
         face: null,
         betNumber: 1,
@@ -17,16 +18,15 @@ export function GamesProvider({ children }) {
         multiplier: []
     });
 
-    const useRNG = function (a, b) {
-        const randomNum = Math.floor(Math.random() * a) + b
-        return randomNum
-    }
+    // const useRNG = function (a, b) {
+    //     return (Math.floor(Math.random() * a) + b)
+    // }
 
-    const useSleep = function (time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(resolve, time)
-        })
-    }
+    // const useSleep = function (time) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(resolve, time)
+    //     })
+    // }
 
 
     return (
@@ -35,8 +35,6 @@ export function GamesProvider({ children }) {
             setInput,
             results,
             setResults,
-            useRNG,
-            useSleep
         }} >
             {children}
         </gamesContext.Provider>

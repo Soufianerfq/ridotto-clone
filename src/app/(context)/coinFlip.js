@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useCallback } from "react"
+import { createContext, useContext, useCallback, useEffect } from "react"
 import { useGamesProvider } from "./gamesProvider"
 
 const coinFlipContext = createContext()
@@ -9,16 +9,22 @@ const coinFlipContext = createContext()
 export function CoinFLip({ children }) {
 
     const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
-    const sleep = useSleep(4000)
-    const sleep2 = useSleep(50)
-    const RNG = useRNG(2, 1)
+    // let sleep = useSleep(6000)
+    // let sleep2 = useSleep(70)
+    // const RNG = useRNG(2, 1)
 
     let wins = 0
+    const sleep = function (time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, time)
+        })
+    }
 
     //Coin flip Mechanism and animation control
     const CF = async function (betN, wager, cardComponent, announcement) {
         for (let i = 1; i <= betN; i++) {
-            RNG; //the odds for the game 50/50 
+            const RNG = Math.floor(Math.random() * 2) + 1; //the odds for the game 50/50 
+            console.log(RNG)
             if (userInput.face === 'heads' && RNG == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log(`you won ${wager * 2}`)
@@ -48,9 +54,9 @@ export function CoinFLip({ children }) {
                 setInput(({ ...userInput, side: "heads" }))
             }
 
-            await sleep
+            await sleep(4000)
             cardComponent.style.animationName = "static" //resets the animation
-            await sleep2
+            await sleep(50)
         }
         if (wins != 0) {
             console.log(`congrats, you won ${wins}`);
@@ -61,19 +67,19 @@ export function CoinFLip({ children }) {
         }
     }
 
-    const flipCoin = useCallback(function (betN, wager, cardComponent, announcement) {
+    const FlipCoin = function (betN, wager, cardComponent, announcement) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
             CF(betN, wager, cardComponent, announcement)
         }
-    }, [CF])
+    }
 
     return (
         <coinFlipContext.Provider value={{
             userInput,
             setInput,
-            flipCoin
+            FlipCoin
         }} >
             {children}
         </coinFlipContext.Provider>
