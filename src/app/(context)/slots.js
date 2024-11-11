@@ -2,10 +2,17 @@
 import { createContext, useCallback, useContext } from "react"
 import { useGamesProvider } from "./gamesProvider";
 
+
+
 const AppContext = createContext()
+
 
 export function Slots({ children }) {
     const { userInput, setInput, useSleep, useRNG } = useGamesProvider()
+    const sleepshort = useSleep(500)
+    const sleeplong = useSleep(5000)
+    const sleepmed = useSleep(2000)
+    const RNG = useRNG(100, 0)
 
     const slots1 = document.querySelectorAll("#box1 > div");
     const slots2 = document.querySelectorAll("#box2 > div");
@@ -20,13 +27,13 @@ export function Slots({ children }) {
             slots1[i].style.animation = "scroll 2s 1s forwards "
         }
 
-        await useSleep(500)
+        await sleepshort
         for (let i = 0; i < slots2.length; i++) {
             slots2[i].style.setProperty("--slot", b)
             slots2[i].style.animation = "scroll 2s 1.5s forwards "
         }
 
-        await useSleep(500)
+        await sleepshort
         for (let i = 0; i < slots3.length; i++) {
             slots3[i].style.setProperty("--slot", c)
             slots3[i].style.animation = "scroll 2s 2s forwards "
@@ -34,7 +41,7 @@ export function Slots({ children }) {
     }
 
     const Odds = function () {
-        const randomNum = useRNG(100, 0)
+        RNG
         let multiplier = 0;
         if (randomNum <= 2) {
             console.log(`x100 ${randomNum}`)
@@ -57,7 +64,7 @@ export function Slots({ children }) {
         }
     }
 
-    const reset = function () {
+    const Reset = function () {
         for (let i = 0; i < slots1.length; i++) {
             slots1[i].style.setProperty("--slot", "-9")
         }
@@ -71,19 +78,19 @@ export function Slots({ children }) {
 
     };
 
-    const slotSpin = async function (betN, wager) {
+    const SlotSpin = async function (betN, wager) {
 
         for (let x = 0; x < betN; x++) {
             let multiplier = Odds();
             console.log(multiplier)
-            reset(slots1, slots2, slots3)
+            Reset(slots1, slots2, slots3)
             for (let i = 0; i < slots3.length; i++) {
                 slots1[i].style.animation = "scroll 1s linear forwards infinite"
                 slots2[i].style.animation = "scroll 1.25s linear forwards infinite"
                 slots3[i].style.animation = "scroll 1.5s linear forwards infinite"
             }
 
-            await useSleep(5000)
+            await sleeplong
             if (multiplier == 100) {
                 result("-9", "-9", "-9")
                 wins = wins + (wager * multiplier)
@@ -103,9 +110,9 @@ export function Slots({ children }) {
                 result("-7", "-5", "-9")
                 wins = wins + (wager * multiplier)
             }
-            await useSleep(2000)
+            await sleepmed
             if (x == betN) {
-                !reset()
+                !Reset()
             }
         }
         if (wins != 0) {
@@ -123,7 +130,7 @@ export function Slots({ children }) {
         <AppContext.Provider value={{
             userInput,
             setInput,
-            slotSpin
+            SlotSpin
         }} >
             {children}
         </AppContext.Provider>

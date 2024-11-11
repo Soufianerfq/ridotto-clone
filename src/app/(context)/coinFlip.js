@@ -4,17 +4,22 @@ import { useGamesProvider } from "./gamesProvider"
 
 const coinFlipContext = createContext()
 
-export function CoinFLip({ children }) {
-    const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
 
+
+export function CoinFLip({ children }) {
     const cardComponent = document.querySelector('.card__content');
     const announcement = document.querySelector('#announcement')
+    const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
+    const sleep = useSleep(4000)
+    const sleep2 = useSleep(50)
+    const RNG = useRNG(2, 1)
+
     let wins = 0
 
     //Coin flip Mechanism and animation control
-    const CF = useCallback(async function (betN, wager) {
+    const CF = async function (betN, wager) {
         for (let i = 1; i <= betN; i++) {
-            const randomNum = useRNG(2, 1); //the odds for the game 50/50 
+            RNG; //the odds for the game 50/50 
             if (userInput.face === 'heads' && randomNum == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log(`you won ${wager * 2}`)
@@ -35,7 +40,6 @@ export function CoinFLip({ children }) {
                 cardComponent.style.animationName = "tails"
                 console.log('you lost to tails')
                 setInput(({ ...userInput, side: "tails" }))
-                Count()
                 console.log(results)
             }
 
@@ -45,9 +49,9 @@ export function CoinFLip({ children }) {
                 setInput(({ ...userInput, side: "heads" }))
             }
 
-            await useSleep(4000)
+            await sleep
             cardComponent.style.animationName = "static" //resets the animation
-            await useSleep(50)
+            await sleep2
         }
         if (wins != 0) {
             console.log(`congrats, you won ${wins}`);
@@ -56,15 +60,15 @@ export function CoinFLip({ children }) {
             console.log('better luck next time');
             announcement.innerHTML = `you lost, better luck next time`;
         }
-    }, [userInput])
+    }
 
-    const flipCoin = function (betN, wager) {
+    const flipCoin = useCallback(function (betN, wager) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
             CF(betN, wager)
         }
-    }
+    }, [CF])
 
     return (
         <coinFlipContext.Provider value={{
