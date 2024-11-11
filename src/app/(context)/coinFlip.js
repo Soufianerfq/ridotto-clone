@@ -61,7 +61,7 @@ export function CoinFLip({ children }) {
         }
     }
 
-    const flipCoin = useCallback(function (betN, wager, cardComponent, announcement) {
+    const FlipCoin = useCallback(function (betN, wager, cardComponent, announcement) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
@@ -73,7 +73,7 @@ export function CoinFLip({ children }) {
         <coinFlipContext.Provider value={{
             userInput,
             setInput,
-            flipCoin
+            FlipCoin
         }} >
             {children}
         </coinFlipContext.Provider>
