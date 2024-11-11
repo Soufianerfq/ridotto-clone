@@ -7,8 +7,7 @@ const coinFlipContext = createContext()
 
 
 export function CoinFLip({ children }) {
-    const cardComponent = document.querySelector('.card__content');
-    const announcement = document.querySelector('#announcement')
+
     const { userInput, setInput, useRNG, useSleep, results } = useGamesProvider()
     const sleep = useSleep(4000)
     const sleep2 = useSleep(50)
@@ -17,10 +16,10 @@ export function CoinFLip({ children }) {
     let wins = 0
 
     //Coin flip Mechanism and animation control
-    const CF = async function (betN, wager) {
+    const CF = async function (betN, wager, cardComponent, announcement) {
         for (let i = 1; i <= betN; i++) {
             RNG; //the odds for the game 50/50 
-            if (userInput.face === 'heads' && randomNum == 1) {
+            if (userInput.face === 'heads' && RNG == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log(`you won ${wager * 2}`)
                 wins = wins + (wager * 2)
@@ -28,7 +27,7 @@ export function CoinFLip({ children }) {
                 console.log(results)
             }
 
-            else if (userInput.face === 'tails' && randomNum == 2) {
+            else if (userInput.face === 'tails' && RNG == 2) {
                 cardComponent.style.animationName = "tails"
                 console.log(`you won ${wager * 2}`)
                 wins = wins + (wager * 2)
@@ -36,14 +35,14 @@ export function CoinFLip({ children }) {
 
             }
 
-            else if (userInput.face === 'heads' && randomNum == 2) {
+            else if (userInput.face === 'heads' && RNG == 2) {
                 cardComponent.style.animationName = "tails"
                 console.log('you lost to tails')
                 setInput(({ ...userInput, side: "tails" }))
                 console.log(results)
             }
 
-            else if (userInput.face === 'tails' && randomNum == 1) {
+            else if (userInput.face === 'tails' && RNG == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log('you lost to heads')
                 setInput(({ ...userInput, side: "heads" }))
@@ -62,11 +61,11 @@ export function CoinFLip({ children }) {
         }
     }
 
-    const flipCoin = useCallback(function (betN, wager) {
+    const flipCoin = useCallback(function (betN, wager, cardComponent, announcement) {
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")
         } else {
-            CF(betN, wager)
+            CF(betN, wager, cardComponent, announcement)
         }
     }, [CF])
 

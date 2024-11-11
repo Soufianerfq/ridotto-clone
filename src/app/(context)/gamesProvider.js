@@ -4,7 +4,6 @@ import { createContext, useState, useContext } from "react"
 const gamesContext = createContext()
 
 export function GamesProvider({ children }) {
-
     const [userInput, setInput] = useState({
         face: null,
         betNumber: 1,

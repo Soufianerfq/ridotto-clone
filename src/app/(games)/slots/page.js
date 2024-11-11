@@ -13,9 +13,23 @@ import slot8 from "/src/images/slots/8.png"
 import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
 import { useSlots } from "@/app/(context)/slots"
+import { useState, useEffect } from "react"
 
 export default function Slots() {
     const { userInput, setInput, SlotSpin } = useSlots()
+
+    const [slots1, setSlots1] = useState(null)
+    const [slots2, setSlots2] = useState(null)
+    const [slots3, setSlots3] = useState(null)
+
+    useEffect(() => {
+        if (document) {
+            setSlots1(document.querySelectorAll("#box1 > div"))
+            setSlots2(document?.querySelectorAll("#box2 > div"))
+            setSlots3(document?.querySelectorAll("#box3 > div"))
+        }
+    }, [])
+
 
 
     return (
@@ -126,7 +140,7 @@ export default function Slots() {
                     </div>
                 </div>
                 <div id="flip">
-                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager)} >Flip Your Money Goodbye</button>
+                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager, slots1, slots2, slots3)} >Flip Your Money Goodbye</button>
                 </div>
             </div>
         </div>

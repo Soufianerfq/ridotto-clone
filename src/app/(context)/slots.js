@@ -2,8 +2,6 @@
 import { createContext, useCallback, useContext } from "react"
 import { useGamesProvider } from "./gamesProvider";
 
-
-
 const AppContext = createContext()
 
 
@@ -14,14 +12,12 @@ export function Slots({ children }) {
     const sleepmed = useSleep(2000)
     const RNG = useRNG(100, 0)
 
-    const slots1 = document.querySelectorAll("#box1 > div");
-    const slots2 = document.querySelectorAll("#box2 > div");
-    const slots3 = document.querySelectorAll("#box3 > div");
+
 
     let wins = 0;
 
 
-    const result = async function (a, b, c) {
+    const result = async function (a, b, c, slots1, slots2, slots3) {
         for (let i = 0; i < slots1.length; i++) {
             slots1[i].style.setProperty("--slot", a)
             slots1[i].style.animation = "scroll 2s 1s forwards "
@@ -43,20 +39,20 @@ export function Slots({ children }) {
     const Odds = function () {
         RNG
         let multiplier = 0;
-        if (randomNum <= 2) {
-            console.log(`x100 ${randomNum}`)
+        if (RNG <= 2) {
+            console.log(`x100 ${RNG}`)
             return multiplier = 100
-        } else if (randomNum >= 6 && randomNum <= 12) {
-            console.log(`x45 ${randomNum}`)
+        } else if (RNG >= 6 && RNG <= 12) {
+            console.log(`x45 ${RNG}`)
             return multiplier = 45
-        } else if (randomNum >= 16 && randomNum <= 28) {
-            console.log(`x20 ${randomNum}`)
+        } else if (RNG >= 16 && RNG <= 28) {
+            console.log(`x20 ${RNG}`)
             return multiplier = 20
-        } else if (randomNum >= 31 && randomNum <= 45) {
-            console.log(`x10 ${randomNum}`)
+        } else if (RNG >= 31 && RNG <= 45) {
+            console.log(`x10 ${RNG}`)
             return multiplier = 10
-        } else if (randomNum >= 51 && randomNum <= 75) {
-            console.log(`x2 ${randomNum}`)
+        } else if (RNG >= 51 && RNG <= 75) {
+            console.log(`x2 ${RNG}`)
             return multiplier = 2
         } else {
             console.log('you lost')
@@ -64,7 +60,7 @@ export function Slots({ children }) {
         }
     }
 
-    const Reset = function () {
+    const Reset = function (slots1, slots2, slots3) {
         for (let i = 0; i < slots1.length; i++) {
             slots1[i].style.setProperty("--slot", "-9")
         }
@@ -78,7 +74,7 @@ export function Slots({ children }) {
 
     };
 
-    const SlotSpin = async function (betN, wager) {
+    const SlotSpin = useCallback(async function (betN, wager, slots1, slots2, slots3) {
 
         for (let x = 0; x < betN; x++) {
             let multiplier = Odds();
@@ -112,7 +108,7 @@ export function Slots({ children }) {
             }
             await sleepmed
             if (x == betN) {
-                !Reset()
+                !Reset(slots1, slots2, slots3)
             }
         }
         if (wins != 0) {
@@ -123,7 +119,8 @@ export function Slots({ children }) {
             console.log('better luck next time');
             announcement.innerHTML = `you lost, better luck next time`;
         }
-    };
+    }, [Reset, userInput])
+
 
 
     return (
