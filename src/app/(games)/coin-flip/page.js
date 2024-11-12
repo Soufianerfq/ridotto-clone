@@ -1,7 +1,7 @@
 "use client";
 import "./styles.css"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import pic1 from "/src/images/coinFlip/tails.png"
 import pic2 from "/src/images/coinFlip/heads.png"
 import pic3 from "/src/images/coinFlip/coinflip.png"
@@ -13,15 +13,8 @@ export default function CoinFlip() {
     const { FlipCoin } = useCoinFlip()
     const { userInput, setInput } = useGamesProvider()
 
-    const [cardComponent, setCardComponent] = useState(null)
-    const [announcement, setAnnouncement] = useState(null)
-
-    useEffect(() => {
-        if (document) {
-            setCardComponent(document.querySelector('.card__content'));
-            setAnnouncement(document.querySelector('#announcement'))
-        }
-    }, [])
+    const cardComponent = useRef(null)
+    const announcement = useRef(null)
 
 
     useEffect(() => {
@@ -44,7 +37,7 @@ export default function CoinFlip() {
 
                 <div id="game" className=" relative  rounded-lg flex-1  max-md:w-[100%]  border-[1px] border-gray-700 w-full " >
                     <div className="card sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto ">
-                        <div className="card__content h-full">
+                        <div ref={cardComponent} className="card__content h-full">
 
                             <div className="tails absolute top-0 bottom-0 right-0 left-0 p-8 flex items-center justify-center">
                                 <Image src={pic1} width={500} height={500} />
@@ -55,7 +48,7 @@ export default function CoinFlip() {
                         </div>
                     </div>
                     <div className=" ">
-                        <h3 className=" text-center text-white font-semibold bg-[#2c2634] rounded-lg m-3 p-1" id="announcement"> TRY YOUR LUCK</h3>
+                        <h3 ref={announcement} className=" text-center text-white font-semibold bg-[#2c2634] rounded-lg m-3 p-1" id="announcement"> TRY YOUR LUCK</h3>
                     </div>
                 </div>
 
@@ -104,7 +97,7 @@ export default function CoinFlip() {
                         </div>
                     </div>
                     <div id="flip">
-                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(userInput.betNumber, userInput.wager, cardComponent, announcement)}>Flip Your Money Goodbye</button>
+                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(userInput.betNumber, userInput.wager, cardComponent.current, announcement.current)}>Flip Your Money Goodbye</button>
                     </div>
                 </div>
             </div>

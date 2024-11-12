@@ -13,23 +13,13 @@ import slot8 from "/src/images/slots/8.png"
 import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
 import { useSlots } from "@/app/(context)/slots"
-import { useState, useEffect } from "react"
+import { useRef } from "react"
 
 export default function Slots() {
     const { userInput, setInput, SlotSpin } = useSlots()
-
-    const [slots1, setSlots1] = useState(null)
-    const [slots2, setSlots2] = useState(null)
-    const [slots3, setSlots3] = useState(null)
-
-    useEffect(() => {
-        if (document) {
-            setSlots1(document.querySelectorAll("#box1 > div"))
-            setSlots2(document?.querySelectorAll("#box2 > div"))
-            setSlots3(document?.querySelectorAll("#box3 > div"))
-        }
-    }, [])
-
+    const slots1 = useRef(null)
+    const slots2 = useRef(null)
+    const slots3 = useRef(null)
 
 
     return (
@@ -39,7 +29,7 @@ export default function Slots() {
                 <div id="slots" className=" flex items-start justify-center sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto">
                     <div className=" relative">
                         <div id="slots" className="absolute top-[38%] left-[12%] md:h-[140px] md:w-[380px] bg-transparent grid grid-cols-3 divide-x-0">
-                            <div id="box1" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                            <div ref={slots1} id="box1" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                     <Image className="w-full h-full" src={slot1} />
                                 </div>
@@ -67,7 +57,7 @@ export default function Slots() {
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                             </div>
-                            <div id="box2" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                            <div ref={slots2} id="box2" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot2} />
@@ -89,7 +79,7 @@ export default function Slots() {
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                             </div>
-                            <div id="box3" className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
+                            <div id="box3" ref={slots3} className="overflow-hidden md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot1} />
                                 </div>
                                 <div className=" md:h-[140px] md:w-[126px] sm:w-[101px] sm:h-[112px] w-[75px] h-[84px]">                                    <Image className="w-full h-full" src={slot2} />
@@ -140,7 +130,7 @@ export default function Slots() {
                     </div>
                 </div>
                 <div id="flip">
-                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager, slots1, slots2, slots3)} >Flip Your Money Goodbye</button>
+                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager, slots1.current, slots2.current, slots3.current)} >Flip Your Money Goodbye</button>
                 </div>
             </div>
         </div>
