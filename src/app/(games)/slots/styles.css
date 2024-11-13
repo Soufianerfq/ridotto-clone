@@ -21,10 +21,29 @@
 }
 
 
+#boxr1 div {
+    animation: scroll 2s 1s forwards;
+}
+
+#boxr2 div {
+    animation: scroll 2s 1.5s forwards;
+}
+
+#boxr3 div {
+    animation: scroll 2s 2s forwards;
+
+}
+
+
 
 @keyframes scroll {
+
+    from {
+        transform: translateY(calc(var(--slot)*0%));
+    }
 
     to {
         transform: translateY(calc(var(--slot)*100%));
     }
+
 }

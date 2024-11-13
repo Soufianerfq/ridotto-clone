@@ -33,10 +33,10 @@ export default function CoinFlip() {
 
     return (
         <div id="game-comtainer" className="flex flex-col w-full" >
-            <div id="theGame" className="flex max-lg:flex-col p-3 gap-3 ">
+            <div id="theGame" className="flex max-lg:flex-col p-3 gap-3  transition-all ">
 
-                <div id="game" className=" relative  rounded-lg flex-1  max-md:w-[100%]  border-[1px] border-gray-700 w-full " >
-                    <div className="card sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto ">
+                <div id="game" className=" transition-all relative  rounded-lg flex-1  max-md:w-[100%]  border-[1px] border-gray-700 w-full " >
+                    <div className=" transition-all card sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] w-[300px] h-[300px] mx-auto ">
                         <div ref={cardComponent} className="card__content h-full">
 
                             <div className="tails absolute top-0 bottom-0 right-0 left-0 p-8 flex items-center justify-center">

@@ -16,21 +16,23 @@ export function Slots({ children }) {
         })
     }
 
-
     const result = async function (a, b, c, slots1, slots2, slots3) {
         for (let i = 0; i < slots1.length; i++) {
+            slots1[i].style.setProperty("--slot", "9")
             slots1[i].style.setProperty("--slot", a)
             slots1[i].style.animation = "scroll 2s 1s forwards "
         }
 
         await sleep(500)
         for (let i = 0; i < slots2.length; i++) {
+            slots2[i].style.setProperty("--slot", "9")
             slots2[i].style.setProperty("--slot", b)
             slots2[i].style.animation = "scroll 2s 1.5s forwards "
         }
 
         await sleep(500)
         for (let i = 0; i < slots3.length; i++) {
+            slots3[i].style.setProperty("--slot", "9")
             slots3[i].style.setProperty("--slot", c)
             slots3[i].style.animation = "scroll 2s 2s forwards "
         }
