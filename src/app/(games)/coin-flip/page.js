@@ -1,17 +1,23 @@
 "use client";
 import "./styles.css"
 import Image from "next/image"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef } from "react"
 import pic1 from "/src/images/coinFlip/tails.png"
 import pic2 from "/src/images/coinFlip/heads.png"
 import pic3 from "/src/images/coinFlip/coinflip.png"
-import { useCoinFlip } from "@/app/(context)/coinFlip";
-import { useGamesProvider } from "@/app/(context)/gamesProvider";
+import { useIOStore } from "@/app/store/store";
+import { useCoinFlip } from "@/app/store/coinFlip";
 
 
 export default function CoinFlip() {
+
+    const userInput = useIOStore((state) => state.userInput);
+    const setBetNumber = useIOStore((state) => state.setBetNumber)
+    const setWager = useIOStore((state) => state.setWager)
+    const setSide = useIOStore((state) => state.setSide)
+    const setFace = useIOStore((state) => state.setFace)
+
     const { FlipCoin } = useCoinFlip()
-    const { userInput, setInput } = useGamesProvider()
 
     const cardComponent = useRef(null)
     const announcement = useRef(null)
@@ -57,14 +63,17 @@ export default function CoinFlip() {
                     <div id="wager ">
                         <h3 id="wager" className=" text-white font-bold">Bet Amount</h3>
                         <input type="number" className=" bg-[#171120] block wd-auto border-solid border-2 rounded-lg w-full border-[#6600ff] text-white p-2 focus:outline-none  focus:border-[#6600ff]"
-                            onChange={(e) => setInput(({ ...userInput, wager: e.target.value }))}
+                            onChange={(e) => {
+                                setWager(e.target.value)
+                                console.log(userInput)
+                            }}
                         />
                     </div>
                     <div id="betNumber">
                         <h3 id="betNumber" className=" text-white font-bold">Multiple Bets: <span>{userInput.betNumber}</span></h3>
                         <input className="w-full accent-[#6600ff]" type="range" id="volume" name="volume" defaultValue='1' min="1" max="100"
                             onChange={(e) => {
-                                setInput(({ ...userInput, betNumber: e.target.value }))
+                                setBetNumber(e.target.value)
                                 console.log(userInput.betNumber)
                             }}
 
@@ -81,7 +90,10 @@ export default function CoinFlip() {
                                 id="heads"
                                 value="heads"
                                 onChange={(e) => {
-                                    setInput(({ ...userInput, face: e.target.value, side: e.target.value }))
+                                    setSide(e.target.value)
+                                    setFace(e.target.value)
+                                    console.log(userInput.side)
+
                                 }} />
                             <label for="heads" className="max-[650px]:w-[30%]"><Image id='img' src={pic2} /></label>
                             <input
@@ -91,13 +103,15 @@ export default function CoinFlip() {
                                 id="tails"
                                 value="tails"
                                 onChange={(e) => {
-                                    setInput(({ ...userInput, face: e.target.value, side: e.target.value }))
+                                    setSide(e.target.value)
+                                    setFace(e.target.value)
+                                    console.log(userInput.side)
                                 }} />
                             <label for="tails" className="max-[650px]:w-[30%]"><Image id='img' src={pic1} /></label>
                         </div>
                     </div>
                     <div id="flip">
-                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(userInput.betNumber, userInput.wager, cardComponent.current, announcement.current)}>Flip Your Money Goodbye</button>
+                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(cardComponent.current, announcement.current, setSide)}>Flip Your Money Goodbye</button>
                     </div>
                 </div>
             </div>

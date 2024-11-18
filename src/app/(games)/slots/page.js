@@ -12,15 +12,20 @@ import slot7 from "/src/images/slots/7.png"
 import slot8 from "/src/images/slots/8.png"
 import slot9 from "/src/images/slots/9.png"
 import frame from "/src/images/slots/frame.png"
-import { useSlots } from "@/app/(context)/slots"
+
+import { useSlots } from "@/app/store/slots"
+import { useIOStore } from "@/app/store/store";
 import { useRef } from "react"
 
 export default function Slots() {
-    const { userInput, setInput, SlotSpin } = useSlots()
     const slots1 = useRef(null)
     const slots2 = useRef(null)
     const slots3 = useRef(null)
 
+    const { SlotSpin } = useSlots()
+    const userInput = useIOStore((state) => state.userInput);
+    const setBetNumber = useIOStore((state) => state.setBetNumber)
+    const setWager = useIOStore((state) => state.setWager)
 
     return (
         // Game animation and display section
@@ -114,12 +119,12 @@ export default function Slots() {
 
                 <div id="wager ">
                     <h3 id="wager" className=" text-white font-bold">Bet Amount </h3>
-                    <input type="number" min={1} className=" bg-[#171120] block wd-auto border-solid border-2 rounded-lg w-full border-[#6600ff] text-white p-2 focus:outline-none  focus:border-[#6600ff]" onChange={(e) => setInput(({ ...userInput, wager: e.target.value }))}
+                    <input type="number" min={1} className=" bg-[#171120] block wd-auto border-solid border-2 rounded-lg w-full border-[#6600ff] text-white p-2 focus:outline-none  focus:border-[#6600ff]" onChange={(e) => setWager(e.target.value)}
                     />
                 </div>
                 <div id="betNumber">
                     <h3 id="betNumber" className=" text-white font-bold">Multiple Bets:<span>{userInput.betNumber}</span></h3>
-                    <input className="w-full accent-[#6600ff]" type="range" id="volume" name="volume" defaultValue='1' min="1" max="100" onChange={(e) => setInput(({ ...userInput, betNumber: e.target.value }))}
+                    <input className="w-full accent-[#6600ff]" type="range" id="volume" name="volume" defaultValue='1' min="1" max="100" onChange={(e) => setBetNumber(e.target.value)}
                     />
                 </div>
                 <div className="bg-[#1f1a24] p-2 rounded-lg" >
@@ -130,7 +135,7 @@ export default function Slots() {
                     </div>
                 </div>
                 <div id="flip">
-                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(userInput.betNumber, userInput.wager, slots1.current, slots2.current, slots3.current)} >Flip Your Money Goodbye</button>
+                    <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => SlotSpin(slots1.current, slots2.current, slots3.current)} >Flip Your Money Goodbye</button>
                 </div>
             </div>
         </div>
