@@ -2,9 +2,14 @@ import { useIOStore } from "./store"
 
 
 export const useCoinFlip = () => {
-    const FlipCoin = async function (cardComponent, announcement, setSide) {
+    const FlipCoin = async function (cardComponent, announcement) {
 
         const userInput = useIOStore.getState().userInput
+
+
+        // const gameOutput = useIOStore.getState().gameOutput
+        // const setGameOutput = useIOStore.getState().setGameOutput()
+
         console.log(userInput)
 
         if (userInput.face === null || userInput.wager === null) {
@@ -19,26 +24,28 @@ export const useCoinFlip = () => {
                 console.log(`you won ${userInput.wager * 2}`)
                 wins = wins + (userInput.wager * 2)
                 setSide("heads")
+                useIOStore.setState({ userInput: { ...userInput, side: 'heads' } })
             }
 
             else if (userInput.face === 'tails' && RNG == 2) {
                 cardComponent.style.animationName = "tails"
                 console.log(`you won ${userInput.wager * 2}`)
                 wins = wins + (userInput.wager * 2)
-                setSide("tails")
+                useIOStore.setState({ userInput: { ...userInput, side: 'tails' } })
+
 
             }
 
             else if (userInput.face === 'heads' && RNG == 2) {
                 cardComponent.style.animationName = "tails"
                 console.log('you lost to tails')
-                setSide("tails")
+                useIOStore.setState({ userInput: { ...userInput, side: 'tails' } })
             }
 
             else if (userInput.face === 'tails' && RNG == 1) {
                 cardComponent.style.animationName = "heads"
                 console.log('you lost to heads')
-                setSide("heads")
+                useIOStore.setState({ userInput: { ...userInput, side: 'heads' } })
             }
 
             await sleep(4000)

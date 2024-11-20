@@ -111,7 +111,7 @@ export default function CoinFlip() {
                         </div>
                     </div>
                     <div id="flip">
-                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(cardComponent.current, announcement.current, setSide)}>Flip Your Money Goodbye</button>
+                        <button className="block rounded-lg p-4 text-white font-bold bg-[#6600ff] w-[100%] mt-5" onClick={() => FlipCoin(cardComponent.current, announcement.current)}>Flip Your Money Goodbye</button>
                     </div>
                 </div>
             </div>

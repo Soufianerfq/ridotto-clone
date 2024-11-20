@@ -7,6 +7,12 @@ export const useIOStore = create((set) => ({
         wager: null,
         side: "heads",
     },
+    gameOutput: {
+        wins: 0,
+        multiplier: null
+    },
+    // setGameOutput: (value, field) => set({ gameOutput: { ...gameOutput, [field]: value } }),
+    setGameOutput: (value, field) => set((state) => ({ gameOutput: { ...state.gameOutput, [field]: value } })),
     setFace: (value) => set((state) => ({ userInput: { ...state.userInput, face: value } })),
     setBetNumber: (value) => set((state) => ({ userInput: { ...state.userInput, betNumber: value } })),
     setWager: (value) => set((state) => ({ userInput: { ...state.userInput, wager: value } })),
