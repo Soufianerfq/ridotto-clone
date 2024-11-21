@@ -2,15 +2,10 @@ import { useIOStore } from "./store"
 
 
 export const useCoinFlip = () => {
+    const userInput = useIOStore.getState().userInput
+    const setSide = useIOStore((state) => state.setSide)
+
     const FlipCoin = async function (cardComponent, announcement) {
-
-        const userInput = useIOStore.getState().userInput
-
-
-        // const gameOutput = useIOStore.getState().gameOutput
-        // const setGameOutput = useIOStore.getState().setGameOutput()
-
-        console.log(userInput)
 
         if (userInput.face === null || userInput.wager === null) {
             console.log("please select stuff")

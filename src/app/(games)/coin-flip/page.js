@@ -46,10 +46,10 @@ export default function CoinFlip() {
                         <div ref={cardComponent} className="card__content h-full">
 
                             <div className="tails absolute top-0 bottom-0 right-0 left-0 p-8 flex items-center justify-center">
-                                <Image src={pic1} width={500} height={500} />
+                                <Image alt="tails" src={pic1} width={500} height={500} />
                             </div>
                             <div className="heads absolute top-0 bottom-0 right-0 left-0 p-8  flex items-center justify-center">
-                                <Image src={pic2} width={500} height={500} />
+                                <Image alt="heads" src={pic2} width={500} height={500} />
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ export default function CoinFlip() {
                 </div>
 
                 <div id="userInput" className="flex flex-col justify-around  rounded-lg flex-none lg:w-[360px]  border-[1px] border-gray-700 p-5">
-                    <div> <Image className="max-[650px]:hidden" src={pic3} width={500} height={500} /></div>
+                    <div> <Image alt="banner" className="max-[650px]:hidden" src={pic3} width={500} height={500} /></div>
                     <div id="wager ">
                         <h3 id="wager" className=" text-white font-bold">Bet Amount</h3>
                         <input type="number" className=" bg-[#171120] block wd-auto border-solid border-2 rounded-lg w-full border-[#6600ff] text-white p-2 focus:outline-none  focus:border-[#6600ff]"
@@ -95,7 +95,7 @@ export default function CoinFlip() {
                                     console.log(userInput.side)
 
                                 }} />
-                            <label for="heads" className="max-[650px]:w-[30%]"><Image id='img' src={pic2} /></label>
+                            <label for="heads" className="max-[650px]:w-[30%]"><Image alt="heads" id='img' src={pic2} /></label>
                             <input
                                 className="userInput"
                                 type="radio"
@@ -107,7 +107,7 @@ export default function CoinFlip() {
                                     setFace(e.target.value)
                                     console.log(userInput.side)
                                 }} />
-                            <label for="tails" className="max-[650px]:w-[30%]"><Image id='img' src={pic1} /></label>
+                            <label htmlForfor="tails" className="max-[650px]:w-[30%]"><Image alt="tails" id='img' src={pic1} /></label>
                         </div>
                     </div>
                     <div id="flip">
