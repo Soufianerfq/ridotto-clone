@@ -95,7 +95,7 @@ export default function CoinFlip() {
                                     console.log(userInput.side)
 
                                 }} />
-                            <label for="heads" className="max-[650px]:w-[30%]"><Image alt="heads" id='img' src={pic2} /></label>
+                            <label htmlFor="heads" className="max-[650px]:w-[30%]"><Image alt="heads" id='img' src={pic2} /></label>
                             <input
                                 className="userInput"
                                 type="radio"
@@ -107,7 +107,7 @@ export default function CoinFlip() {
                                     setFace(e.target.value)
                                     console.log(userInput.side)
                                 }} />
-                            <label htmlForfor="tails" className="max-[650px]:w-[30%]"><Image alt="tails" id='img' src={pic1} /></label>
+                            <label htmlFor="tails" className="max-[650px]:w-[30%]"><Image alt="tails" id='img' src={pic1} /></label>
                         </div>
                     </div>
                     <div id="flip">
